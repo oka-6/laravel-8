@@ -16,3 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::middleware('throttle:60,1')->group(function () {
+    Route::any('/send-message', 'App\Http\Controllers\Controller@send')->name('send.message');
+});
+
